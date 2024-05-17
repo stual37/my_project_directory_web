@@ -1,0 +1,17 @@
+{% extends 'recipes/recipe.html.twig' %}
+{# ~ permet de concaterner #}
+{% block title "Recette " ~ recipe.slug  %}
+
+{% block body %}
+    <h1>{{ recipe.title }}</h1>
+    <div>
+        
+        {{ form_start(form) }}
+            <div class="d-flex md-5">
+                {{ form_row(form.name) }}
+            </div>
+           
+        {{ form_end(form) }}
+        
+    </div>
+{% endblock %}

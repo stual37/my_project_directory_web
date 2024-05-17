@@ -1,0 +1,15 @@
+{% extends 'recipes/recipe.html.twig' %}
+{# ~ permet de concaterner #}
+{% block title "Recette " ~ recipe.slug  %}
+
+{% block body %}
+    
+    <div>
+        <h1> {{ recipe.title | capitalize }} </h1>
+        <span> Temps de préparation et cuisson : {{ recipe.duration }} </span>
+        <p>
+             {{ recipe.content |nl2br }}
+        </p>
+        <a class="btn btn-primary" href="{{ path('recipes.recipe.edit', {id: recipe.id }) }}" role="button">Modifier</a>
+    </div>
+{% endblock %}

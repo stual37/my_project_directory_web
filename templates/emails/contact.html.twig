@@ -1,0 +1,16 @@
+<p>
+    Une nouvelle de demande de contatc à été reçue
+</p>
+
+
+<ul class="list-group">
+  <li class="list-group-item"> Nom : {{ data.name }} </li>
+  <li class="list-group-item"> Email : {{ data.email }} </li>
+  <li class="list-group-item"> Email : {{ data.service }} </li>
+  <li class="list-group-item"> Sujet : {{ data.subject }} </li>
+</ul>
+
+<p>
+    <strong> Message :  </strong> <br />
+    {{ data.message | nl2br }}
+</p>

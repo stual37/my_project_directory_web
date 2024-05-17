@@ -1,0 +1,36 @@
+{% extends 'recipes/recipe.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <div>
+        <h1> Les catégories </h1>
+        <p>
+            <a class="btn btn-primary " href="{{ path('recipes.category.add') }}" role="button">Nouvelle catégorie</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Titre </th>
+                    <th> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr id='{{ category.slug }}'>
+                    <td> {{ category.name }} </td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a class="btn btn-primary btn-sm" href="{{ path('recipes.category.edit', {id: category.id  }) }}">Modifier</a> 
+                            <form action="{{ path('recipes.category.delete', {id: category.id}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm" > Supprimer </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
