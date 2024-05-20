@@ -11,6 +11,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th> Catégorie </th>
                     <th> Titre </th>
                     <th> Action </th>
                 </tr>
@@ -18,6 +19,7 @@
             <tbody>
                 {% for recipe in recipes %}
                 <tr id='{{ recipe.slug }}'>
+                    <td> {{ recipe.category.name | default('') }} </td>
                     <td><a href="{{ path('recipes.recipe.show', {id: recipe.id }) }}">{{ recipe.title }}</a></td>
                     <td>
                         <div class="d-flex gap-1">

@@ -7,6 +7,10 @@
     <div>
         <h1> {{ recipe.title | capitalize }} </h1>
         <span> Temps de préparation et cuisson : {{ recipe.duration }} </span>
+        <br/>
+        <div>
+            <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="" />
+        </div>
         <p>
              {{ recipe.content |nl2br }}
         </p>

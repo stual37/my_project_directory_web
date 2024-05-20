@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 use function Symfony\Component\Clock\now;
 
@@ -37,22 +38,8 @@ class RecipeController extends AbstractController
     #[Route('/{id}', name: 'show', requirements: ['id' => Requirement::DIGITS])]
     public function show(Request $request, int $id, RecipeRepository $recipeRepository) : Response
     {
-        //dd($request, $request->attributes->get('slug'), $request->attributes->getInt('id'));
-        //$response = '{ id : ' . $id .'[ slug : '. $slug .']}';
-        //Pour envoyer du json
-        /*
-        return $this->json([
-            'slug' => $slug
-        ]);
-        */
-        //identique que dessus
-        /*
-        return new JsonResponse([
-            'slug' => $slug
-        ]);
-        */
+        /** @var Recipe $recipe */
         $recipe = $recipeRepository->find($id);
-
 
         return $this->render('recipes/recipe/show.html.twig', [
             'slug' => $recipe->getSlug(),
@@ -61,11 +48,19 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit', requirements:['id' => Requirement::DIGITS], methods:['GET', 'POST'])]
-    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em)
+    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em, UploaderHelper $uploaderHelper)
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $file */
+            //$file = $form->get('thumbnailFile')->getData();
+            //$fileName = $recipe->getId() . '-' . $recipe->getSlug() . '.' . $file->getClientOriginalExtension();
+            //$param = $this->getParameter('kernel.project_dir') . '/public/images/recettes';
+            //$file->move($param, $fileName);
+            //$recipe->setThumbnail($fileName);
+
+            /** @var  EntityManagerInterface $em */
             $em->flush();
             $this->addFlash('success', 'La recette a bien été mis à jour');
             return $this->redirectToRoute('recipes.recipe.index');
@@ -82,6 +77,7 @@ class RecipeController extends AbstractController
     #[Route('/add' , name: 'add', methods:['GET', 'POST'])]
     public function add(Request $request, EntityManagerInterface $em)
     {
+        /** @var Recipe $recipe */
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);

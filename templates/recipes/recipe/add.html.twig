@@ -5,7 +5,6 @@
 {% block body %}
     <h1>AJouter une nouvelle recette</h1>
     <div>
-        
         {{ form_start(form) }}
             <div class="d-flex md-5">
                 {{ form_row(form.title) }}
@@ -13,10 +12,11 @@
                 {{ form_row(form.slug) }}
             </div>
             <div>
+                {{ form_row(form.category) }}
+            </div>
+            <div>
                 {{ form_row(form.content) }}
             </div>
-           
         {{ form_end(form) }}
-        
     </div>
 {% endblock %}
