@@ -4,8 +4,9 @@ namespace App\Form;
 
 use DateTimeImmutable;
 use App\Entity\Category;
+use App\Entity\Recipe;
 use App\Factory\FormListenerFactory;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 
@@ -34,6 +35,14 @@ class CategoryType extends AbstractType
             ->add('slug', TextType::class, [
                 'empty_data' => '',
                 'required' => false,
+            ])
+            ->add('recipes', EntityType::class, [
+                'class' => Recipe::class,
+                'choice_label' => 'title',
+                'label' => 'Recettes',
+                'multiple' => true,
+                'by_reference' => false,
+                'expanded' => true,
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Envoyer'
