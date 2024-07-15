@@ -1,4 +1,4 @@
-{% extends 'recipes/recipe.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Recettes{% endblock %}
 
@@ -8,30 +8,30 @@
         <p>
             <a class="btn btn-primary " href="{{ path('recipes.recipe.add') }}" role="button">Nouvelle recette</a>
         </p>
-        <table class="table">
+        <table class="table" role="table">
             <thead>
                 <tr>
-                    <th> Catégorie </th>
-                    <th> Titre </th>
-                    <th> Action </th>
+                    <th scope="col"> Catégorie </th>
+                    <th scope="col"> Titre </th>
+                    <th scope="col"> Action </th>
                 </tr>
             </thead>
             <tbody>
                 {% for recipe in recipes %}
-                <tr id='{{ recipe.slug }}'>
-                    <td> {{ recipe.category.name | default('') }} </td>
-                    <td><a href="{{ path('recipes.recipe.show', {id: recipe.id }) }}">{{ recipe.title }}</a></td>
-                    <td>
-                        <div class="d-flex gap-1">
-                            <a class="btn btn-primary btn-sm" href="{{ path('recipes.recipe.edit', {id: recipe.id  }) }}">Modifier</a> 
-                            <form action="{{ path('recipes.recipe.delete', {id: recipe.id}) }}" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-sm" > Supprimer </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
+                    <tr id='{{ recipe.slug }}'>
+                        <td > {{ recipe.category.name | default('') }} </td>
+                        <td ><a href="{{ path('recipes.recipe.show', {id: recipe.id }) }}">{{ recipe.title }}</a></td>
+                        <td >
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-primary btn-sm" href="{{ path('recipes.recipe.edit', {id: recipe.id  }) }}">Modifier</a> 
+                                <form action="{{ path('recipes.recipe.delete', {id: recipe.id}) }}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger btn-sm" > Supprimer </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

@@ -16,6 +16,12 @@ class FormListenerFactory {
         # code...
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $field
+     * @return callable
+     */
     public function autoSlug(string $field): callable
     {
         return function(PreSubmitEvent $event) use ($field) {
@@ -28,6 +34,11 @@ class FormListenerFactory {
         };
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return callable
+     */
     public function timeStamps(): callable
     {
         return function (SubmitEvent $event) {

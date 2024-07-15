@@ -1,0 +1,33 @@
+{% extends '/admin/dashboard.html.twig' %}
+{# ~ permet de concaterner #}
+{% block title "Administration " ~ user.id  %}
+
+{% block admin %}
+    <h1>{{ user.username }}</h1>
+    <div class="col">
+        <div>
+            <label for='username_id' id='username_id'>Nom d'utilisateur : </label> {{ user.id }}
+        </div>
+        <div>
+            <label for='username' id='username'>Nom d'utilisateur : </label> {{ user.email }}
+        </div>
+        <div>
+            <label for='roles' id='roles'>Rôles : </label>
+            {% for role in user.roles %}
+                {{ role }}
+            {% endfor %}
+        </div>
+        <div>
+            <label for='password' id='user-password'>Mot de passe : </label> {{ user.password }}
+        </div>
+        <div>
+            <label for='verified' id='verified'>Valide : </label>
+            {% if(user.isVerified) %}
+                1
+            {% else %}
+                0
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

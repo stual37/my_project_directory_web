@@ -21,5 +21,4 @@ class BanWord extends Constraint
     {
         parent::__construct(null, $groups, $payload);
     }
-    
 }

@@ -16,6 +16,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -28,29 +30,68 @@ class RecipeType extends AbstractType
         # code...
     }
 
+    /**
+     * Méthode qui permet de créer le formulaire des recettes
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
-                'empty_data' => ''
+                'empty_data' => '',
+                'attr' => [
+                    'aria-label' => 'Titre de la recette',
+                    'aria-description' => 'Titre de la recette, il doit être unique'
+                ]
             ])
-            ->add('slug', TextType::class, [
+            ->add('slug', HiddenType::class, [
                 'required' => false,
+                'attr' => [
+                    'aria-label' => 'SLug de la recette',
+                    'aria-description' => 'Slug de la recette avec une valeur unique'
+                ]
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie',
                 'expanded' => true,
+                'attr' => [
+                    'aria-label' => 'Catégorie de la recette',
+                    'aria-description' => 'Catégorie de la recette'
+                ]
             ])
             ->add('content', TextareaType::class, [
-                'empty_data' => ''
+                'label' => 'Durée',
+                'empty_data' => '',
+                'attr' => [
+                    'aria-label' => 'Contenu de la recette',
+                    'aria-description' => 'Description détaillé de la recette avec les étapes pas à pas'
+                ]
             ])
-            ->add('duration')
-            ->add('thumbnailFile', FileType::class)
+            ->add('duration', IntegerType::class, [
+                'empty_data' => '',
+                'attr' => [
+                    'aria-label' => 'Durée de la recette',
+                    'aria-description' => 'Durée totale pour executer la recette en minutes'
+                ]
+            ])
+            ->add('thumbnailFile', FileType::class, [
+                'attr' => [
+                    'aria-label' => 'Fichier image',
+                    'aria-description' => 'Image de la recette'
+                ]
+            ])
             ->add('save', SubmitType::class, [
-                'label' => 'Envoyer'
+                'label' => 'Envoyer',
+                'attr' => [
+                    'aria-label' => 'Sauvegarder la recette',
+                    'aria-description' => 'Bouton pour sauvegarder la recette'
+                ]
             ])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->formListenerFactory->autoSlug('title'))
             //->addEventListener(FormEvents::SUBMIT, $this->setDate(...))

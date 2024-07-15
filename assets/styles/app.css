@@ -1,3 +1,113 @@
+/** Global **/
 body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h4 {
+    font-size: 14px;;
+}
+
+.example-wrapper {
+    margin: 1em auto;
+    max-width: 600px;
+    width: 95%;
+    font: 18px/1.5 sans-serif;
+}
+.example-wrapper code {
+    background: #F5F5F5;
+    padding: 2px 6px;
+}
+
+.left {
+    margin: 10px;
+    background-color: rgb(47, 194, 37);
+    margin-right: 20px;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+.admin-left {
+    margin: 10px;
+    background-color: rgb(47, 194, 37);
+    margin-right: 20px;
+    margin-left: 30px;
+    padding: 10px;
+    width: 10%;
+}
+
+.admin {
+    display: flex;
+    flex: content;
+    flex-direction: column;
+    margin: 20px;
+}
+.admin-body {
     background-color: skyblue;
 }
+
+.container {
+    background-color: skyblue;
+}
+
+.right {
+    margin: 15px;
+    background-color: white;
+    margin-right: 40px;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+iframe {
+    border: 1px solid black;
+    width: 100%; /* takes precedence over the width set with the HTML width attribute */
+}
+
+#map {
+    height: 100%;
+}
+
+/** Pour la gestion du captcha  **/
+.captcha {
+    display: block;
+    justify-content: center;
+    border: 2px solid var(--bs-border-color);
+    width: var(--width);
+    height: var(--height);
+    margin-bottom: 15px;
+    background: var(--image);
+    position: relative;
+    background-repeat: no-repeat;
+    touch-action: none; /* pour éviter un scroll */
+}
+
+.captcha-piece {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--pieceWidth);
+    height: var(--pieceHeight);
+    background: var(--image) top right;
+}
+
+.captcha-piece::after {
+    content: '';
+    background-image: url( '/border/piece-9.png') no-repeat;
+    position: absolute;
+    width: cal( var(--pieceWidth)+10px);
+    height: cal( var(--pieceHeight) + 10px);
+    transform: translate(-4px, 0px);
+    transition: .3s;
+
+}
+
+.captcha:not(.captcha-waiting-interaction) .captcha-piece:not(isMoving)::after {
+    opacity: 0.3;
+}
+
+.capatcha-accessibilty-problem {
+    text-align: center;
+    color: blue;
+}
+
+
+/**  Pour la gestion en fonction de la taille des écrans **/

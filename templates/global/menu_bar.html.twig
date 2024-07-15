@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" role="navigation">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('home') }}">Mon site</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            {% if(is_granted('ROLE_VERIFIED')) %}
+                {% include('/global/recipe_menu.html.twig') %}
+            {% else %}
+                {% include('/global/global_menu.html.twig') %}
+            {% endif %}
+        </ul>
+        {% if is_granted('ROLE_ADMIN') %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {{ app.current_route starts with 'admin.' ? 'active' : '' }}" href="{{ path('admin.dashboard') }}">Administration</a>
+                </li>
+            
+            </ul>
+        {% endif %}
+    </div>
+    {% include('/global/login.html.twig') %}
+</nav>

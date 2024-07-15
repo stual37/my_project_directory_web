@@ -1,0 +1,59 @@
+{% extends '/admin/dashboard.html.twig' %}
+
+{% block title %}Administration | Les utilisateurs{% endblock %}
+
+{% block admin %}
+
+    <h1>Administration: Les utilisateurs ✅</h1>
+
+    <div>
+        <h2> Liste des utilisateurs </h2>
+        <div>
+            <p>
+            <a class="btn btn-primary " href="{{ path('admin.users.user.add') }}" role="button">Nouvelle utilisateur</a>
+            </p>
+            <table class="table" role="table">
+                <thead>
+                    <tr>
+                        <th scope="col"> id </th>
+                        <th scope="col"> Username </th>
+                        <th scope="col"> email </th>
+                        <th scope="col"> Rôle </th>
+                        <th scope="col"> Valide </th>
+                        <th scope="col"> Acions </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr id='{{ user.id }}'>
+                            <td ><a href="{{ path('admin.users.user.show', {id: user.id }) }}">{{ user.id }}</a></td>
+                            <td >{{ user.username }}</td>
+                            <td >{{ user.email }}</td>
+                            <td >
+                                {% for role in user.roles %}
+                                    {{ role }}
+                                {% endfor %}
+                            </td>
+                            <td >
+                                {% if user.isverified %}
+                                    Oui
+                                {% else %}
+                                    Non
+                                {% endif %}
+                            </td>
+                            <td >
+                                <div class="d-flex gap-1">
+                                    <a class="btn btn-primary btn-sm" href="{{ path('admin.users.user.edit', {id: user.id  }) }}">Modifier</a> 
+                                    <form action="{{ path('admin.users.user.delete', {id: user.id}) }}" method="post">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm" > Supprimer </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
