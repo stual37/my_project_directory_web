@@ -1,0 +1,9 @@
+<li class="nav-item">
+    <a class="nav-link {{ app.current_route == 'home' ? 'active' : '' }}" aria-current="page" href="{{ path('home') }}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {{ app.current_route starts with 'recipe.' ? 'active' : '' }}" href="{{ path('recipes.recipe.index') }}">La cuisine</a>
+</li>
+<li class="nav-item justify-content-md-end">
+    <a class="nav-link {{ app.current_route == 'contact' ? 'active' : '' }}" aria-current="page" href="{{ path('contact') }}">Nous contacter</a>
+</li>

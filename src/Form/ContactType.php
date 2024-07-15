@@ -19,19 +19,33 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'empty_data' => ' ',
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'attr' => [
+                    'aria-label' => 'Email'
+                ]
             ])
             ->add('email', EmailType::class, [
                 'empty_data' => ' ',
                 'label' => 'Email',
+                'attr' => [
+                    'aria-label' => 'Email'
+                ]
             ])
             ->add('subject', TextType::class, [
                 'empty_data' => ' ',
                 'label' => 'Sujet',
+                'attr' => [
+                    'aria-label' => 'Sujet'
+                ]
             ])
             ->add('message', TextareaType::class, [
                 'empty_data' => ' ',
                 'label' => 'Message',
+                'attr' => [
+                    'minlength' => 8,
+                    'maxlength' => 500,
+                    'aria-label' => 'Message'
+                ],
             ])
             ->add('service', ChoiceType::class, [
                 'choices' => [
@@ -42,7 +56,10 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer'
+                'label' => 'Envoyer',
+                'attr' => [
+                    'aria-label' => 'Bouton pour envoyer'
+                ]
             ])
         ;
     }

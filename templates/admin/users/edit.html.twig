@@ -1,0 +1,20 @@
+{% extends '/admin/dashboard.html.twig' %}
+{# ~ permet de concaterner #}
+
+{% block title "Utilisateur " ~  "" %}
+
+{% block admin %}
+    <h2>Utilisateur modifier</h2>
+    <div>
+        {{ form_start(form) }}
+            
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.roles) | raw }}
+            {{ form_row(form.isVerified) }}
+
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}

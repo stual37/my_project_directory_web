@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Problème d'inscription {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Nous contacter</h1>
+    <div>
+        {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.subject) }}
+            
+            <div class="mb-3">
+            {{ form_label(form.message)  }}
+                {{ form_widget(form.message) |raw }}
+            </div>
+                <div class="col p-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a type='button' href='{{ path('home') }}' class='btn btn-secondary' role='button' > Annuler </a>
+                    {{ form_widget(form.submit) }}
+                </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

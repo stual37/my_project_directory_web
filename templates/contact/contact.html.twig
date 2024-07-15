@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} %Nous contacter{% endblock %}
+{% block title %} Nous contacter {% endblock %}
 
 {% block body %}
 <style>
@@ -16,11 +16,12 @@
                 <div class="row"> {{ form_row(form.email) }}  </div>
                 <div class="row"> {{ form_row(form.service) }}  </div>
                 <div class="row"> {{ form_row(form.subject) }}  </div>
-                <div class="row"> {{ form_row(form.message) }}  </div>
-                <div class="row p-3 align-end"> {{ form_row(form.submit) }}  </div>
+                <div class="row p10"> {{ form_row(form.message) }}  </div>
+                <div class="col p-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a type='button' href='{{ path('home') }}' class='btn btn-secondary' role='button' > Annuler </a>
+                    {{ form_widget(form.submit) }}
+                </div>
         {{ form_end(form) }}
-       
     </div>
-    
 </div>
 {% endblock %}

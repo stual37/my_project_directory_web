@@ -23,7 +23,5 @@ class BanWordValidator extends ConstraintValidator
                     ->addViolation();
             }
         }
-
-       
     }
 }

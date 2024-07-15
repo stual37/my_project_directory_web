@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CategoryType extends AbstractType
 {
@@ -24,7 +25,13 @@ class CategoryType extends AbstractType
         # code...
     }
 
-    
+    /**
+     * Méthode qui permet de créer le formulaire
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -77,10 +84,16 @@ class CategoryType extends AbstractType
         $event->setData($data);
     }
 
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Category::class,
         ]);
+    }
+
+    private function getSession(): SessionInterface
+    {
+
     }
 }

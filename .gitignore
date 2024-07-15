@@ -26,3 +26,8 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+/src/Domain/AntiSpam/Puzzle
+/templates/form
+/templates/reset_password
+src/Form/Type/RepeatedPasswordType.php
+src/Form/Type/CaptchaType.php

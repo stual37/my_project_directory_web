@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'enregistrer{% endblock %}
+{% block stylesheets %}
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="example-wrapper">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        <h1>S'enregistrer</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.username) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.password) }}
+            {{ form_row(registrationForm.agreedTerms) }}
+            {{ form_row(registrationForm.captcha) }}
+            <div class="col d-grid gap-2 d-md-flex justify-content-md-center">
+                <a type='button' href='{{ path('home') }}' class='btn btn-secondary' role='button' > Annuler </a>
+                {{ form_widget(registrationForm.submit) }}
+            </div>
+        {{ form_end(registrationForm) }}
+
+        <script type="text/JavaScript" >
+
+        </script >
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

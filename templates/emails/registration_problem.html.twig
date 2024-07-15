@@ -1,0 +1,16 @@
+<p>
+    Une nouvelle de demande de d'inscription à été reçue
+</p>
+
+
+<ul class="list-group">
+  <li class="list-group-item"> Username : {{ data.username }} </li>
+  <li class="list-group-item"> Email : {{ data.email }} </li>
+  <li class="list-group-item"> Sujet : {{ data.subject }} </li>
+  <li class="list-group-item"> Message : {{ data.message }} </li>
+</ul>
+
+<p>
+    <strong> Message :  </strong> <br />
+    {{ data.message | nl2br }}
+</p>
